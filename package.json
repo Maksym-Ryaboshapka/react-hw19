@@ -1,7 +1,7 @@
 {
-  "name": "gif-app",
+  "name": "react-hw19",
   "version": "0.1.0",
-  "homepage": "https://maksym-ryaboshapka.github.io/gif-app/",
+  "homepage": "https://maksym-ryaboshapka.github.io/react-hw19/",
   "private": false,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",

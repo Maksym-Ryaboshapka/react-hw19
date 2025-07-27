@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 import GifSearch from "./components/GifSearch/GifSearch";
@@ -6,43 +6,40 @@ import GifList from "./components/GifList/GIfList";
 
 import apiJSON from "./api-key.json";
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
+const App = () => {
+  const [gifs, setGifs] = useState([]);
+  const [keyword, setKeyword] = useState("");
 
-    this.state = {
-      gifs: [],
-      keyword: "",
+  const apiEndpoint = "https://api.giphy.com/v1/gifs/search";
+  const apiKey = apiJSON.key;
+
+  useEffect(() => {
+    if (!keyword) return;
+
+    const fetchGifs = async () => {
+      try {
+        const res = await axios.get(
+          `${apiEndpoint}?api_key=${apiKey}&q=${keyword}&limit=15`
+        );
+        setGifs(res.data.data);
+      } catch (err) {
+        console.log(err);
+      }
     };
 
-    this.apiEndpoint = "https://api.giphy.com/v1/gifs/search";
-    this.apiKey = apiJSON.key;
-  }
+    fetchGifs();
+  }, [keyword]);
 
-  componentDidUpdate = async (prevProps, prevState) => {
-    if (prevState.keyword === this.state.keyword) return;
+  const handleChangeKeyword = useCallback((newKeyword) => {
+    setKeyword(newKeyword);
+  }, setKeyword);
 
-    try {
-      const res = await axios.get(
-        `${this.apiEndpoint}?api_key=${this.apiKey}&q=${this.state.keyword}&limit=15`
-      );
+  return (
+    <div className="App">
+      <GifSearch changeKeyword={handleChangeKeyword} />
+      <GifList gifs={gifs} />
+    </div>
+  );
+};
 
-      this.setState({ gifs: res.data.data });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  handleChangeKeyword = (newKeyword) => {
-    this.setState({ keyword: newKeyword });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <GifSearch changeKeyword={this.handleChangeKeyword} />
-        <GifList gifs={this.state.gifs} />
-      </div>
-    );
-  }
-}
+export default App;

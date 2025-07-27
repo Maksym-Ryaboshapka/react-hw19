@@ -1,9 +1,8 @@
-import { Component } from "react";
-
+import { memo } from "react";
 import { Form, Input, Button } from "./gif-search.styled";
 
-export default class GifSearch extends Component {
-  handleSubmit = (e) => {
+const GifSearch = memo(({changeKeyword}) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
 
@@ -12,16 +11,16 @@ export default class GifSearch extends Component {
     if (keyword.trim() !== "") {
       form.reset();
 
-      this.props.changeKeyword(keyword);
+      changeKeyword(keyword);
     }
   };
 
-  render() {
-    return (
-      <Form onSubmit={this.handleSubmit}>
-        <Input type="text" name="keyword" />
-        <Button type="submit">Пошук</Button>
-      </Form>
-    );
-  }
-}
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Input type="text" name="keyword" />
+      <Button type="submit">Пошук</Button>
+    </Form>
+  );
+});
+
+export default GifSearch;
