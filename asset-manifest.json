@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/gif-app/static/css/main.91b035bb.css",
-    "main.js": "/gif-app/static/js/main.f3c91685.js",
-    "index.html": "/gif-app/index.html",
-    "main.91b035bb.css.map": "/gif-app/static/css/main.91b035bb.css.map",
-    "main.f3c91685.js.map": "/gif-app/static/js/main.f3c91685.js.map"
+    "main.css": "/react-hw19/static/css/main.91b035bb.css",
+    "main.js": "/react-hw19/static/js/main.d62d84de.js",
+    "index.html": "/react-hw19/index.html",
+    "main.91b035bb.css.map": "/react-hw19/static/css/main.91b035bb.css.map",
+    "main.d62d84de.js.map": "/react-hw19/static/js/main.d62d84de.js.map"
   },
   "entrypoints": [
     "static/css/main.91b035bb.css",
-    "static/js/main.f3c91685.js"
+    "static/js/main.d62d84de.js"
   ]
 }
